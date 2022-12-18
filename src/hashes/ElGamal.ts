@@ -34,14 +34,12 @@ class ElGamal {
         return this.gcd(b, a % b)
      }
  
- 
     private generateKey(q: number): number {
        let key = this.randInt(10**20, q)
     
        while (this.gcd(q,key) != 1) key = this.randInt(10**20,q)
        return key;
     }
- 
  
     private power(a: number, b: number, c: number): number {
        let x = 1;
