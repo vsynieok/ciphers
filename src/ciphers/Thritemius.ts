@@ -14,6 +14,9 @@ class Thritemius {
     this.key = this._key;
   }
 
+  // замінюємо вхідні літери на ті, що
+  // знаходяться на відповідних місцях
+  // в строках по ключу
   public encrypt(input: string): string {
     let _input = this.prepareInput(input);
     _input = _input.map((v, i) => {
@@ -27,6 +30,7 @@ class Thritemius {
     return _input.join("");
   }
 
+  // робимо обернену заміну літер
   public decrypt(input: string): string {
     let _input = this.prepareInput(input);
     _input = _input.map((v, i) => {
@@ -41,6 +45,8 @@ class Thritemius {
     return _input.join("");
   }
 
+  // генеруємо ключ з літер алфавіту
+  // змішаних випадковим чином
   private generateKey(): string {
     let letters = constants.Alphabet.split("");
     letters = letters
@@ -50,8 +56,9 @@ class Thritemius {
     return letters.join("");
   }
 
+  // обрізаємо ключ по довжині алфавіту
   private trimKey(key?: string): string | undefined {
-    if (!key || key.length == constants.Alphabet.length) return key;
+    if (!key || key.length === constants.Alphabet.length) return key;
 
     let extendedKey = constants.Alphabet.split("").map((v, i) => {
       return key.charAt(i % key.length);
@@ -60,6 +67,8 @@ class Thritemius {
     return extendedKey.join("");
   }
 
+  // перетворюємо вхідний текст на заглавні літери
+  // та видаляємо символи, яких немає в алфавіті
   private prepareInput(text: string): string[] {
     return text
       .toUpperCase()
@@ -67,6 +76,7 @@ class Thritemius {
       .filter((v) => constants.Alphabet.includes(v));
   }
 
+  // перевіряємо правильність ключа
   private checkKey(key: string): boolean {
     let distinctKey = new Set(key);
     return (

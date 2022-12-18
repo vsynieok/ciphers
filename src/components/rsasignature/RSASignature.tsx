@@ -4,8 +4,6 @@ import RSASignature from "../../hashes/RSASignature";
 
 const RSAAlgo: React.FC = () => {
   const [form] = Form.useForm();
-  const [hash, setHash] = useState<string>("");
-  const [hasError, setHasError] = useState<boolean>(false);
   const [isCorrect, setCorrect] = useState<boolean>(false);
 
   let requiredRule = () => {

@@ -13,18 +13,21 @@ class SimpleReplacement {
     this.key = this._key;
   }
 
+  // замінюємо літери на відповідні літери з ключа
   public encrypt(input: string): string {
     let _input = this.prepareInput(input);
     _input = _input.map((v) => this._key[constants.Alphabet.indexOf(v)]);
     return _input.join("");
   }
 
+  // робимо обернену заміну
   public decrypt(input: string): string {
     let _input = this.prepareInput(input);
     _input = _input.map((v) => constants.Alphabet[this._key.indexOf(v)]);
     return _input.join("");
   }
 
+  // генеруємо ключ з літер алфавіту, змішаних випадковим чином
   private generateKey(): string {
     let letters = constants.Alphabet.split("");
     letters = letters
@@ -34,6 +37,8 @@ class SimpleReplacement {
     return letters.join("");
   }
 
+  // перетворюємо вхідний текст на заглавні літери
+  // та видаляємо символи, яких немає в алфавіті
   private prepareInput(text: string): string[] {
     return text
       .toUpperCase()
@@ -41,6 +46,7 @@ class SimpleReplacement {
       .filter((v) => constants.Alphabet.includes(v));
   }
 
+  // перевіряємо правильність ключа
   private checkKey(key: string): boolean {
     let distinctKey = new Set(key);
     return (

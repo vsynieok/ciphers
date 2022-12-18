@@ -2,6 +2,8 @@ import constants from "../Constants";
 
 class SimpleRearragement {
   private _key: string;
+
+  // довжина ключа
   private _width = 5;
 
   public key: string;
@@ -15,6 +17,8 @@ class SimpleRearragement {
     this.key = this._key;
   }
 
+  // отримуємо та змінюємо позиції літер у відношенні до
+  // вхідного ключа (ключ повинен бути у вигляді індексів)
   public encrypt(input: string): string {
     let _input = this.prepareInput(input);
     _input = _input.map((v, i) => {
@@ -24,6 +28,8 @@ class SimpleRearragement {
     return _input.join("");
   }
 
+  // повертаємо літери в вихідні позиції, за допомогою
+  // ключа (у вигляді індексів)
   public decrypt(input: string): string {
     let _input = this.prepareInput(input);
     _input = _input.map((v, i) => {
@@ -33,6 +39,7 @@ class SimpleRearragement {
     return _input.join("");
   }
 
+  // код для генерації ключа з випадкових номерів
   private generateKey(): string {
     let letters: number[] = Array.from(Array(this._width).keys());
     letters = letters
@@ -42,6 +49,9 @@ class SimpleRearragement {
     return letters.join("");
   }
 
+  // перетворюємо літери в заглавні та додаємо
+  // послідовні літери з алфавіту в кінець, якщо
+  // довжина похідної строки не є кратною довжині ключа
   private prepareInput(text: string): string[] {
     let str = text
       .toUpperCase()
@@ -55,6 +65,7 @@ class SimpleRearragement {
     return str;
   }
 
+  // перевіряємо правильність ключа
   private checkKey(key: string): boolean {
     let distinctKey = new Set(key);
     return (

@@ -8,7 +8,7 @@ class ElGamal {
     }
 
     public getSignature(repr: string) {
-        let a = this.randInt(2, 10);
+        // let a = this.randInt(2, 10);
         let msg = parseInt(repr, 2);
 
         let g = this.randInt(2, this._q)
@@ -30,14 +30,14 @@ class ElGamal {
  
     private gcd(a: number,b: number) : number {
         if (a < b) return this.gcd(b,a)
-        else if (a%b == 0) return b;
+        else if (a%b === 0) return b;
         return this.gcd(b, a % b)
      }
  
     private generateKey(q: number): number {
        let key = this.randInt(10**20, q)
     
-       while (this.gcd(q,key) != 1) key = this.randInt(10**20,q)
+       while (this.gcd(q,key) !== 1) key = this.randInt(10**20,q)
        return key;
     }
  
@@ -46,7 +46,7 @@ class ElGamal {
        let y = 1;
     
        while (b>0){
-           if(b%2 != 0){  
+           if(b%2 !== 0){  
                x = (x*x) % c;
            }
            y = (y * y) % c

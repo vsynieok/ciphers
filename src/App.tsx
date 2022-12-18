@@ -1,5 +1,5 @@
 import { Layout, Menu } from "antd";
-import { Content } from "antd/es/layout/layout";
+import { Content, Footer } from "antd/es/layout/layout";
 import Sider from "antd/es/layout/Sider";
 import { MenuProps } from "antd/es/menu";
 import { ReactNode, useState } from "react";
@@ -81,6 +81,13 @@ function App() {
           <Content style={{ height: "100%" }}>
             {getComponentByKey(menuOption)}
           </Content>
+          <Footer>
+            <div style={{ textAlign: "right", color: "gray" }}>
+              Виконав: Синєок В. В.
+              <br />
+              Викладач: Неласа Г. В.
+            </div>
+          </Footer>
         </Layout>
       </Layout>
     </Layout>
