@@ -15,6 +15,7 @@ class Polybius {
   }
 
   set key(value: string) {
+    console.log('setting key')
     this._key = value;
     this._matrix = this.generateMatrix();
   }
@@ -34,7 +35,7 @@ class Polybius {
   private generateMatrix(): string {
     let divideDifference = this._matrixWidth - constants.Alphabet.length % this._matrixWidth;
     let length = constants.Alphabet.length + divideDifference;
-    let excludedAlphabet = Array.from(constants.Alphabet).filter(c => !this.key.includes(c)).join()
+    let excludedAlphabet = Array.from(constants.Alphabet).filter(c => !this.key.includes(c)).join('')
     let matrix = this.key;
 
     for (let i = this.key.length; i < length - divideDifference; i++) {
@@ -45,6 +46,7 @@ class Polybius {
       matrix = matrix + String(k).charAt(0)
     }
 
+    console.log(matrix)
     return matrix
   }
 
